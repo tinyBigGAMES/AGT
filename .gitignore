@@ -79,3 +79,10 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
+
+# Aurora Game Toolkit
+*.dsv
+bin/Data.zip
+!bin/AGT.dll
+
+bin/image.png

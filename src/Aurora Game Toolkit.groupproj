@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{30524857-8518-41E5-8779-D88FAC7302C3}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\build\Aurora.CLibs\Aurora.CLibs.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AGT.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\examples\testbed\Testbed.dproj">
+            <Dependencies>AGT.dproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Aurora_CLibs">
+        <MSBuild Projects="..\..\build\Aurora.CLibs\Aurora.CLibs.cbproj"/>
+    </Target>
+    <Target Name="Aurora_CLibs:Clean">
+        <MSBuild Projects="..\..\build\Aurora.CLibs\Aurora.CLibs.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Aurora_CLibs:Make">
+        <MSBuild Projects="..\..\build\Aurora.CLibs\Aurora.CLibs.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="AGT">
+        <MSBuild Projects="AGT.dproj"/>
+    </Target>
+    <Target Name="AGT:Clean">
+        <MSBuild Projects="AGT.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AGT:Make">
+        <MSBuild Projects="AGT.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Testbed" DependsOnTargets="AGT">
+        <MSBuild Projects="..\examples\testbed\Testbed.dproj"/>
+    </Target>
+    <Target Name="Testbed:Clean" DependsOnTargets="AGT:Clean">
+        <MSBuild Projects="..\examples\testbed\Testbed.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Testbed:Make" DependsOnTargets="AGT:Make">
+        <MSBuild Projects="..\examples\testbed\Testbed.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Aurora_CLibs;AGT;Testbed"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Aurora_CLibs:Clean;AGT:Clean;Testbed:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Aurora_CLibs:Make;AGT:Make;Testbed:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
