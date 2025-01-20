@@ -47,7 +47,7 @@ Getting started with AGT is easy! Follow these simple steps:
 5. For detailed examples, check out the **examples folder** to see AGT in action
 6. **Created and tested** using **RAD Studio 12.2** on **Windows 11 (24H2)**
 
-AGT should be compatible with any programming language with bindings that **support** **DLL usage**, **Windows 64-bit** architecture, and **Unicode**."
+AGT should be compatible with any programming language with bindings that **support** **DLL usage**, **Windows 64-bit** architecture, and **Unicode**.
 
 ---
 
