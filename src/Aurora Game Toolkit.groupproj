@@ -3,9 +3,6 @@
         <ProjectGuid>{30524857-8518-41E5-8779-D88FAC7302C3}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="..\..\build\Aurora.CLibs\Aurora.CLibs.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="AGT.dproj">
             <Dependencies/>
         </Projects>
@@ -20,15 +17,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="Aurora_CLibs">
-        <MSBuild Projects="..\..\build\Aurora.CLibs\Aurora.CLibs.cbproj"/>
-    </Target>
-    <Target Name="Aurora_CLibs:Clean">
-        <MSBuild Projects="..\..\build\Aurora.CLibs\Aurora.CLibs.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Aurora_CLibs:Make">
-        <MSBuild Projects="..\..\build\Aurora.CLibs\Aurora.CLibs.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="AGT">
         <MSBuild Projects="AGT.dproj"/>
     </Target>
@@ -48,13 +36,13 @@
         <MSBuild Projects="..\examples\testbed\Testbed.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Aurora_CLibs;AGT;Testbed"/>
+        <CallTarget Targets="AGT;Testbed"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Aurora_CLibs:Clean;AGT:Clean;Testbed:Clean"/>
+        <CallTarget Targets="AGT:Clean;Testbed:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Aurora_CLibs:Make;AGT:Make;Testbed:Make"/>
+        <CallTarget Targets="AGT:Make;Testbed:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
