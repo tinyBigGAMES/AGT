@@ -75,36 +75,57 @@ unit AGT;
 interface
 
 const
+
+  /// <summary>
+  ///   Represents the name of the DLL used by the AGT library.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant holds the name of the dynamic-link library (DLL) that contains the AGT (Aurora Game Toolkit) functions and procedures.
+  ///   - The DLL file is used for linking to the AGT library, enabling the application to access the functions and features provided by the AGT project.
+  ///   - Typically, this constant is used internally for loading the DLL during runtime to call the appropriate functions from the AGT library.
+  /// </remarks>
   AGT_DLL = 'AGT.dll';
 
 //=== COMMON ================================================================
-/// <summary>
-///   Represents a constant value indicating no preference or a "don't care" state.
-/// </summary>
 const
+
+  /// <summary>
+  ///   Represents a constant value indicating no preference or a "don't care" state.
+  /// </summary>
   AGT_DONT_CARE = -1;
 
 type
+
   /// <summary>
   ///   Specifies horizontal alignment options.
   /// </summary>
   /// <remarks>
   ///   This enumeration is used to define the alignment of elements along the horizontal axis.
+  ///   It is commonly used for aligning text, UI elements, or graphical components within a container or layout.
   /// </remarks>
   AGT_HAlign = (
     /// <summary>
     ///   Align to the left.
     /// </summary>
+    /// <remarks>
+    ///   - This alignment option places the element at the leftmost position along the horizontal axis.
+    /// </remarks>
     AGT_haLeft,
 
     /// <summary>
     ///   Align to the center.
     /// </summary>
+    /// <remarks>
+    ///   - This alignment option places the element in the center of the available space along the horizontal axis.
+    /// </remarks>
     AGT_haCenter,
 
     /// <summary>
     ///   Align to the right.
     /// </summary>
+    /// <remarks>
+    ///   - This alignment option places the element at the rightmost position along the horizontal axis.
+    /// </remarks>
     AGT_haRight
   );
 
@@ -113,21 +134,31 @@ type
   /// </summary>
   /// <remarks>
   ///   This enumeration is used to define the alignment of elements along the vertical axis.
+  ///   It is commonly used for positioning text, UI elements, or graphical components within a container or layout on the vertical axis.
   /// </remarks>
   AGT_VAlign = (
     /// <summary>
     ///   Align to the top.
     /// </summary>
+    /// <remarks>
+    ///   - This alignment option places the element at the topmost position along the vertical axis.
+    /// </remarks>
     AGT_vaTop,
 
     /// <summary>
     ///   Align to the center.
     /// </summary>
+    /// <remarks>
+    ///   - This alignment option places the element in the center of the available space along the vertical axis.
+    /// </remarks>
     AGT_vaCenter,
 
     /// <summary>
     ///   Align to the bottom.
     /// </summary>
+    /// <remarks>
+    ///   - This alignment option places the element at the bottommost position along the vertical axis.
+  /// </remarks>
     AGT_vaBottom
   );
 
@@ -153,32 +184,48 @@ type
 function AGT_HudTextItem(const AKey: PWideChar; const AValue: PWideChar; const ASeperator: PWideChar; const APaddingWidth: Cardinal = 20): PWideChar; cdecl; external AGT_DLL;
 
 //=== IO ====================================================================
-/// <summary>
-///   Represents a generic I/O pointer.
-/// </summary>
+
 type
+
+  /// <summary>
+  ///   Represents a generic I/O pointer.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used as a generic pointer for I/O operations. It can point to any data structure used for input and output handling.
+  ///   - Commonly used for file handling, memory I/O, or stream-based operations.
+  /// </remarks>
   AGT_IO = Pointer;
 
   /// <summary>
   ///   Specifies seek origin options for I/O operations.
-/// </summary>
-/// <remarks>
-///   This enumeration is used to determine the reference point for seeking within a stream.
-/// </remarks>
+  /// </summary>
+  /// <remarks>
+  ///   This enumeration is used to determine the reference point for seeking within a stream.
+  ///   - The origin determines where seeking operations like `AGT_IO_Seek` will begin relative to.
+  /// </remarks>
   AGT_IOSeek = (
     /// <summary>
     ///   Seek from the beginning of the stream.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This origin option sets the reference point for seeking to the beginning of the stream (e.g., a file or memory buffer).
+    /// </remarks>
     AGT_iosStart,
 
     /// <summary>
     ///   Seek from the current position in the stream.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This origin option sets the reference point for seeking to the current position in the stream. It is useful for moving forward or backward from the current location.
+    /// </remarks>
     AGT_iosCurrent,
 
     /// <summary>
     ///   Seek from the end of the stream.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This origin option sets the reference point for seeking to the end of the stream (e.g., moving backward from the end of a file).
+    /// </remarks>
     AGT_iosEnd
   );
 
@@ -312,10 +359,15 @@ function AGT_IO_Pos(const AIO: AGT_IO): Int64; cdecl; external AGT_DLL;
 function AGT_IO_Eos(const AIO: AGT_IO): Boolean; cdecl; external AGT_DLL;
 
 //=== MEMORYIO ===============================================================
-/// <summary>
-///   Represents a memory-based I/O object.
-/// </summary>
 type
+
+  /// <summary>
+  ///   Represents a memory-based I/O object.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to represent an I/O object that is backed by memory, rather than a file or stream.
+  ///   - It allows data to be read from and written to memory, which is useful for handling in-memory buffers or memory-mapped files.
+  /// </remarks>
   AGT_MemoryIO = Pointer;
 
 /// <summary>
@@ -365,27 +417,38 @@ function AGT_MemoryIO_Alloc(const ASize: Int64): AGT_MemoryIO; cdecl; external A
 function AGT_MemoryIO_Memory(const AMemoryIO: AGT_MemoryIO): Pointer; cdecl; external AGT_DLL;
 
 //=== FILEIO =================================================================
-/// <summary>
-///   Represents a file-based I/O object.
-/// </summary>
 type
+
+  /// <summary>
+  ///   Represents a file-based I/O object.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to represent an I/O object that is associated with a file.
+  ///   - It allows for reading from and writing to a file, enabling file-based data operations such as file manipulation and content retrieval.
+  /// </remarks>
   AGT_FileIO = Pointer;
 
   /// <summary>
   ///   Specifies the mode in which a file-based I/O object should be opened.
-/// </summary>
-/// <remarks>
-///   This enumeration determines whether the file is opened for reading or writing.
-/// </remarks>
+  /// </summary>
+  /// <remarks>
+  ///   This enumeration determines whether the file is opened for reading or writing, controlling the access level of the file during I/O operations.
+  /// </remarks>
   AGT_IOMode = (
     /// <summary>
     ///   Open the file in read mode.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - In read mode, the file is opened for reading operations only.
+  ///   </remarks>
     AGT_iomRead,
 
     /// <summary>
     ///   Open the file in write mode.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - In write mode, the file is opened for writing operations, and its contents may be modified or overwritten.
+  ///   </remarks>
     AGT_iomWrite
   );
 
@@ -408,40 +471,47 @@ type
 function AGT_FileIO_Open(const AFilename: PWideChar; const AMode: AGT_IOMode): AGT_FileIO; cdecl; external AGT_DLL;
 
 //=== ZIPFILEIO ==============================================================
-/// <summary>
-///   Default password used for zip file operations.
-/// </summary>
-/// <remarks>
-///   This constant provides a default password for zip files when no custom password is specified.
-///   It is recommended to override this value for security purposes.
-/// </remarks>
 const
+
+  /// <summary>
+  ///   Default password used for zip file operations.
+  /// </summary>
+  /// <remarks>
+  ///   This constant provides a default password for zip files when no custom password is specified.
+  ///   It is recommended to override this value for security purposes.
+  /// </remarks>
   AGT_DEFAULT_ZIPFILE_PASSWORD = 'N^TpjE5/*czG,<ns>$}w;?x_uBm9[JSr{(+FRv7ZW@C-gd3D!PRUgWE4P2/wpm9-dt^Y?e)Az+xsMb@jH"!X`B3ar(yq=nZ_~85<';
 
 type
+
   /// <summary>
   ///   Represents a zip file-based I/O object.
-/// </summary>
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to represent an I/O object that is associated with a zip file.
+  ///   - It allows for reading from and writing to files within a zip archive, enabling efficient management of compressed data.
+  ///   - This is useful for operations such as extracting, adding, or modifying files within a zip archive without manually decompressing it.
+  /// </remarks>
   AGT_ZipFileIO = Pointer;
 
   /// <summary>
   ///   Callback procedure for tracking progress during zip file creation.
-/// </summary>
-/// <param name="AFilename">
-///   The name of the file being processed.
-/// </param>
-/// <param name="AProgress">
-///   The current progress as a percentage (0-100).
-/// </param>
-/// <param name="ANewFile">
-///   Indicates whether the file being processed is new.
-/// </param>
-/// <param name="AUserData">
-///   Custom user data passed to the callback.
-/// </param>
-/// <remarks>
-///   This callback is invoked during the build process of a zip file to provide progress updates.
-/// </remarks>
+  /// </summary>
+  /// <param name="AFilename">
+  ///   The name of the file being processed.
+  /// </param>
+  /// <param name="AProgress">
+  ///   The current progress as a percentage (0-100).
+  /// </param>
+  /// <param name="ANewFile">
+  ///   Indicates whether the file being processed is new.
+  /// </param>
+  /// <param name="AUserData">
+  ///   Custom user data passed to the callback.
+  /// </param>
+  /// <remarks>
+  ///   This callback is invoked during the build process of a zip file to provide progress updates.
+  /// </remarks>
   AGT_ZipFileIOBuildProgressCallback = procedure(const AFilename: PWideChar; const AProgress: Integer; const ANewFile: Boolean; const AUserData: Pointer); cdecl;
 
 /// <summary>
@@ -512,271 +582,429 @@ function AGT_ZipFileIO_Open(const AZipFilename, AFilename, APassword: PWideChar)
 function AGT_ZipFileIO_LoadToMemory(const AZipFilename, AFilename, APassword: PWideChar): AGT_MemoryIO; cdecl; external AGT_DLL;
 
 //=== MATH ==================================================================
-/// <summary>
-///   Converts radians to degrees.
-/// </summary>
 const
+
+  /// <summary>
+  ///   Converts radians to degrees.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant is used to convert an angle from radians to degrees.
+  ///   - The value is calculated as `180.0 / PI`, where `PI` is the mathematical constant representing the ratio of a circle's circumference to its diameter.
+  /// </remarks>
   AGT_RADTODEG = 180.0 / PI;
 
-/// <summary>
-///   Converts degrees to radians.
-/// </summary>
-const
+  /// <summary>
+  ///   Converts degrees to radians.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant is used to convert an angle from degrees to radians.
+  ///   - The value is calculated as `PI / 180.0`, where `PI` is the mathematical constant representing the ratio of a circle's circumference to its diameter.
+  /// </remarks>
   AGT_DEGTORAD = PI / 180.0;
 
-/// <summary>
-///   A very small value used to handle floating-point precision.
-/// </summary>
-const
+  /// <summary>
+  ///   A very small value used to handle floating-point precision.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant is typically used for comparing floating-point values, ensuring that small differences due to precision errors are handled correctly.
+  ///   - It is commonly used in operations involving floating-point numbers to account for minor rounding errors.
+  /// </remarks>
   AGT_EPSILON = 0.00001;
 
-/// <summary>
-///   Represents a "Not-a-Number" (NaN) value.
-/// </summary>
-const
+  /// <summary>
+  ///   Represents a "Not-a-Number" (NaN) value.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant represents the "Not-a-Number" (NaN) value, which is used in floating-point arithmetic to represent undefined or unrepresentable values.
+  ///   - NaN is often the result of operations like dividing 0 by 0 or taking the square root of a negative number.
+  /// </remarks>
   AGT_NAN = 0.0 / 0.0;
 
-/// <summary>
-///   Represents the number of bytes in a kilobyte.
-/// </summary>
-const
+  /// <summary>
+  ///   Represents the number of bytes in a kilobyte.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant defines the number of bytes in a kilobyte (KB), which is 1024 bytes.
+  ///   - It is commonly used in memory management, file size calculations, and data transfer rates.
+  /// </remarks>
   AGT_KILOBYTE = 1024;
 
-/// <summary>
-///   Represents the number of bytes in a megabyte.
-/// </summary>
-const
+  /// <summary>
+  ///   Represents the number of bytes in a megabyte.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant defines the number of bytes in a megabyte (MB), which is 1024 * 1024 bytes.
+  ///   - It is often used in memory management, file size calculations, and storage capacity measurements.
+  /// </remarks>
   AGT_MEGABYTE = 1024 * 1024;
 
-/// <summary>
-///   Represents the number of bytes in a gigabyte.
-/// </summary>
-const
+  /// <summary>
+  ///   Represents the number of bytes in a gigabyte.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant defines the number of bytes in a gigabyte (GB), which is 1024 * 1024 * 1024 bytes.
+  ///   - It is commonly used in storage systems, memory management, and large data handling.
+  /// </remarks>
   AGT_GIGABYTE = 1024 * 1024 * 1024;
 
-
-/// <summary>
-///   Represents a 4D vector with components X, Y, Z, and W.
-/// </summary>
 type
-  PAGT_Vector = ^AGT_Vector;
+
+  /// <summary>
+  ///   Represents a 4D vector with components X, Y, Z, and W.
+  /// </summary>
+  /// <remarks>
+  ///   - A 4D vector is commonly used in 3D graphics, physics simulations, and geometry for representing points, directions, or transformations in 4-dimensional space.
+  ///   - The W component is often used for homogenous coordinates in 3D transformations, allowing operations like perspective projection.
+  /// </remarks>
   AGT_Vector = record
     /// <summary>
     ///   The X component of the vector.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - Represents the horizontal position or direction in 4D space.
+    /// </remarks>
     x: Single;
+
     /// <summary>
     ///   The Y component of the vector.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - Represents the vertical position or direction in 4D space.
+    /// </remarks>
     y: Single;
+
     /// <summary>
     ///   The Z component of the vector.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - Represents the depth position or direction in 4D space (commonly used in 3D graphics).
+    /// </remarks>
     z: Single;
+
     /// <summary>
     ///   The W component of the vector.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - In 3D graphics, this is often used for homogenous coordinates, enabling perspective transformations.
+    /// </remarks>
     w: Single;
   end;
 
-/// <summary>
-///   Represents a 2D point with X and Y coordinates.
-/// </summary>
-type
-  PAGT_Point = ^AGT_Point;
+  /// <summary>
+  ///   A pointer to an <c>AGT_Vector</c> record.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to refer to a memory location where an <c>AGT_Vector</c> is stored.
+  ///   - Useful for dynamic memory management or passing by reference.
+  /// </remarks>
+  PAGT_Vector = ^AGT_Vector;
+
+  /// <summary>
+  ///   Represents a 2D point with X and Y coordinates.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is commonly used in 2D graphics and coordinate systems to represent positions or points in space.
+  ///   - It is typically used for operations such as drawing, collision detection, and spatial calculations.
+  /// </remarks>
   AGT_Point = record
     /// <summary>
     ///   The X coordinate of the point.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - Represents the horizontal position of the point in the 2D space.
+  /// </remarks>
     x: Single;
+
     /// <summary>
     ///   The Y coordinate of the point.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - Represents the vertical position of the point in the 2D space.
+  /// </remarks>
     y: Single;
   end;
 
-/// <summary>
-///   Represents a size with width (W) and height (H) components.
-/// </summary>
-type
-  PAGT_Size = ^AGT_Size;
+  /// <summary>
+  ///   A pointer to an <c>AGT_Point</c> record.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to refer to a memory location where an <c>AGT_Point</c> is stored.
+  ///   - Useful for dynamic memory management or passing by reference.
+  /// </remarks>
+  PAGT_Point = ^AGT_Point;
+
+  /// <summary>
+  ///   Represents a size with width (W) and height (H) components.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is commonly used to represent dimensions such as the size of a 2D object, window, or image.
+  ///   - It can be used in various contexts, including graphical rendering, UI layout, and physics simulations.
+  /// </remarks>
   AGT_Size = record
     /// <summary>
-    ///   The width component.
-/// </summary>
+    ///   The width component of the size.
+    /// </summary>
+    /// <remarks>
+    ///   - Represents the horizontal dimension (width) of the object or area.
+    /// </remarks>
     w: Single;
+
     /// <summary>
-    ///   The height component.
-/// </summary>
+    ///   The height component of the size.
+    /// </summary>
+    /// <remarks>
+    ///   - Represents the vertical dimension (height) of the object or area.
+    /// </remarks>
     h: Single;
   end;
 
-/// <summary>
-///   Represents a rectangle defined by a position and size.
-/// </summary>
-type
-  PAGT_Rect = ^AGT_Rect;
+  /// <summary>
+  ///   A pointer to an <c>AGT_Size</c> record.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to reference a memory location where an <c>AGT_Size</c> is stored.
+  ///   - Useful for dynamic memory management or passing by reference.
+  /// </remarks>
+  PAGT_Size = ^AGT_Size;
+
+  /// <summary>
+  ///   Represents a rectangle defined by a position and size.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is commonly used to represent rectangular areas or bounding boxes in 2D space.
+  ///   - It combines a position (represented as an <c>AGT_Point</c>) and a size (represented as an <c>AGT_Size</c>) to define a 2D rectangle.
+  ///   - It is used for graphical rendering, collision detection, layout management, and more.
+  /// </remarks>
   AGT_Rect = record
     /// <summary>
     ///   The position of the rectangle, represented as a point.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - Represents the top-left corner of the rectangle in 2D space.
+  /// </remarks>
     pos: AGT_Point;
+
     /// <summary>
     ///   The size of the rectangle, represented as width and height.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - Defines the width and height of the rectangle in 2D space.
+  /// </remarks>
     size: AGT_Size;
   end;
 
-/// <summary>
-///   Represents an extent defined by minimum and maximum points.
-/// </summary>
-type
-  PAGT_Extent = ^AGT_Extent;
+  /// <summary>
+  ///   A pointer to an <c>AGT_Rect</c> record.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to refer to a memory location where an <c>AGT_Rect</c> is stored.
+  ///   - Useful for dynamic memory management or passing by reference.
+  /// </remarks>
+  PAGT_Rect = ^AGT_Rect;
+
+  /// <summary>
+  ///   Represents an extent defined by minimum and maximum points.
+  /// </summary>
+  /// <remarks>
+  ///   - An extent typically defines a rectangular area or bounding box in 2D space, where the minimum and maximum points specify the opposite corners of the area.
+  ///   - This type is useful in graphics, collision detection, or spatial operations to represent the boundaries of a given area or object.
+  /// </remarks>
   AGT_Extent = record
     /// <summary>
-    ///   The minimum point of the extent.
-/// </summary>
+    ///   The minimum point of the extent, typically the bottom-left or top-left corner in 2D space.
+    /// </summary>
+    /// <remarks>
+    ///   - The minimum point defines one corner of the extent (usually the corner with the smallest coordinates).
+    /// </remarks>
     min: AGT_Point;
+
     /// <summary>
-    ///   The maximum point of the extent.
-/// </summary>
+    ///   The maximum point of the extent, typically the top-right or bottom-right corner in 2D space.
+    /// </summary>
+    /// <remarks>
+    ///   - The maximum point defines the opposite corner of the extent (usually the corner with the largest coordinates).
+    /// </remarks>
     max: AGT_Point;
   end;
 
-/// <summary>
-///   Represents an Oriented Bounding Box (OBB) defined by a center, extents, and rotation.
-/// </summary>
-type
-  PAGT_OBB = ^AGT_OBB;
+  /// <summary>
+  ///   A pointer to an <c>AGT_Extent</c> record.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to refer to a memory location where an <c>AGT_Extent</c> is stored.
+  ///   - Useful for dynamic memory management or passing by reference when working with multiple extents or bounding boxes.
+  /// </remarks>
+  PAGT_Extent = ^AGT_Extent;
+
+  /// <summary>
+  ///   Represents an Oriented Bounding Box (OBB) defined by a center, extents, and rotation.
+  /// </summary>
+  /// <remarks>
+  ///   - An Oriented Bounding Box (OBB) is a 2D box that is not necessarily aligned to the coordinate axes. It is defined by a center point, extents (width and height), and a rotation angle.
+  ///   - OBBs are useful in collision detection and spatial operations where rotated objects need to be bounded or tested against other objects.
+  /// </remarks>
   AGT_OBB = record
     /// <summary>
     ///   The center point of the OBB.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - The center represents the middle point of the OBB, around which the extents and rotation are defined.
+    /// </remarks>
     Center: AGT_Point;
+
     /// <summary>
     ///   The extents of the OBB along the X and Y axes.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - The extents define the half-width and half-height of the OBB. These values represent the distance from the center to the edges along the X and Y axes.
+    /// </remarks>
     Extents: AGT_Point;
+
     /// <summary>
     ///   The rotation of the OBB in degrees.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - The rotation angle specifies how the OBB is rotated around its center. This value is typically measured in degrees from the horizontal axis.
+    /// </remarks>
     Rotation: Single;
   end;
 
-/// <summary>
-///   Represents the result of a line intersection calculation.
-/// </summary>
-type
+  /// <summary>
+  ///   A pointer to an <c>AGT_OBB</c> record.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to refer to a memory location where an <c>AGT_OBB</c> is stored.
+  ///   - Useful for dynamic memory management or passing by reference.
+  /// </remarks>
+  PAGT_OBB = ^AGT_OBB;
+
+  /// <summary>
+  ///   Represents the result of a line intersection calculation.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to represent the outcome of a line intersection test between two lines.
+  ///   - It is commonly used in computational geometry, physics simulations, and collision detection.
+  /// </remarks>
   AGT_LineIntersection = (
     /// <summary>
     ///   No intersection.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This result indicates that the two lines do not intersect or meet at any point.
+  /// </remarks>
     AGT_liNone,
+
     /// <summary>
     ///   A valid intersection occurred.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This result indicates that the two lines intersect at a single point.
+  /// </remarks>
     AGT_liTrue,
+
     /// <summary>
     ///   The lines are parallel.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This result indicates that the two lines are parallel and will never intersect.
+  /// </remarks>
     AGT_liParallel
   );
 
-/// <summary>
-///   Specifies the type of easing function for animations or transitions.
-/// </summary>
-/// <remarks>
-///   These easing functions control how values change over time, creating smooth or dynamic effects.
-/// </remarks>
-type
+  /// <summary>
+  ///   Specifies the type of easing function for animations or transitions.
+  /// </summary>
+  /// <remarks>
+  ///   These easing functions control how values change over time, creating smooth or dynamic effects.
+  /// </remarks>
   AGT_EaseType = (
     /// <summary>
     ///   Linear easing (no acceleration or deceleration).
-/// </summary>
+    /// </summary>
     AGT_etLinearTween,
     /// <summary>
     ///   Quadratic easing in (acceleration).
-/// </summary>
+    /// </summary>
     AGT_etInQuad,
     /// <summary>
     ///   Quadratic easing out (deceleration).
-/// </summary>
+    /// </summary>
     AGT_etOutQuad,
     /// <summary>
     ///   Quadratic easing in and out (acceleration and deceleration).
-/// </summary>
+    /// </summary>
     AGT_etInOutQuad,
     /// <summary>
     ///   Cubic easing in (stronger acceleration).
-/// </summary>
+    /// </summary>
     AGT_etInCubic,
     /// <summary>
     ///   Cubic easing out (stronger deceleration).
-/// </summary>
+    /// </summary>
     AGT_etOutCubic,
     /// <summary>
     ///   Cubic easing in and out (stronger acceleration and deceleration).
-/// </summary>
+    /// </summary>
     AGT_etInOutCubic,
     /// <summary>
     ///   Quartic easing in.
-/// </summary>
+    /// </summary>
     AGT_etInQuart,
     /// <summary>
     ///   Quartic easing out.
-/// </summary>
+    /// </summary>
     AGT_etOutQuart,
     /// <summary>
     ///   Quartic easing in and out.
-/// </summary>
+    /// </summary>
     AGT_etInOutQuart,
     /// <summary>
     ///   Quintic easing in.
-/// </summary>
+    /// </summary>
     AGT_etInQuint,
     /// <summary>
     ///   Quintic easing out.
-/// </summary>
+    /// </summary>
     AGT_etOutQuint,
     /// <summary>
     ///   Quintic easing in and out.
-/// </summary>
+    /// </summary>
     AGT_etInOutQuint,
     /// <summary>
     ///   Sine wave easing in.
-/// </summary>
+    /// </summary>
     AGT_etInSine,
     /// <summary>
     ///   Sine wave easing out.
-/// </summary>
+    /// </summary>
     AGT_etOutSine,
     /// <summary>
     ///   Sine wave easing in and out.
-/// </summary>
+    /// </summary>
     AGT_etInOutSine,
     /// <summary>
     ///   Exponential easing in.
-/// </summary>
+    /// </summary>
     AGT_etInExpo,
     /// <summary>
     ///   Exponential easing out.
-/// </summary>
+    /// </summary>
     AGT_etOutExpo,
     /// <summary>
     ///   Exponential easing in and out.
-/// </summary>
+    /// </summary>
     AGT_etInOutExpo,
     /// <summary>
     ///   Circular easing in.
-/// </summary>
+    /// </summary>
     AGT_etInCircle,
     /// <summary>
     ///   Circular easing out.
-/// </summary>
+    /// </summary>
     AGT_etOutCircle,
     /// <summary>
     ///   Circular easing in and out.
-/// </summary>
+    /// </summary>
     AGT_etInOutCircle
   );
 
@@ -1753,29 +1981,61 @@ function AGT_OBBIntersect(const AObbA, AObbB: AGT_OBB): Boolean; cdecl; external
 function AGT_UnitToScalarValue(const AValue, AMaxValue: Double): Double; cdecl; external AGT_DLL;
 
 //=== COLOR =================================================================
-/// <summary>
-///   Represents a color with red, green, blue, and alpha (opacity) components.
-/// </summary>
 type
-  PAGT_Color = ^AGT_Color;
+
+  /// <summary>
+  ///   Represents a color with red, green, blue, and alpha (opacity) components.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to define colors in a normalized RGBA format, where each component (red, green, blue, and alpha) is represented by a floating-point value between 0.0 and 1.0.
+  ///   - It is commonly used in graphics programming, image manipulation, and UI design to represent colors with transparency (alpha).
+  /// </remarks>
   AGT_Color = record
     /// <summary>
     ///   The red component of the color, represented as a floating-point value between 0.0 and 1.0.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - The red component defines the intensity of red in the color.
+    ///   - A value of 0.0 means no red, while 1.0 means full red.
+    /// </remarks>
     r: Single;
+
     /// <summary>
     ///   The green component of the color, represented as a floating-point value between 0.0 and 1.0.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - The green component defines the intensity of green in the color.
+    ///   - A value of 0.0 means no green, while 1.0 means full green.
+    /// </remarks>
     g: Single;
+
     /// <summary>
     ///   The blue component of the color, represented as a floating-point value between 0.0 and 1.0.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - The blue component defines the intensity of blue in the color.
+    ///   - A value of 0.0 means no blue, while 1.0 means full blue.
+    /// </remarks>
     b: Single;
+
     /// <summary>
     ///   The alpha (opacity) component of the color, represented as a floating-point value between 0.0 and 1.0.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - The alpha component controls the opacity of the color.
+    ///   - A value of 0.0 means fully transparent, while 1.0 means fully opaque.
+    /// </remarks>
     a: Single;
   end;
+
+  /// <summary>
+  ///   A pointer to an <c>AGT_Color</c> record.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to refer to a memory location where an <c>AGT_Color</c> is stored.
+  ///   - Useful for passing color information by reference or when working with dynamic memory allocation.
+  /// </remarks>
+  PAGT_Color = ^AGT_Color;
 
 /// <summary>
 ///   Creates a color from byte components (0-255).
@@ -2213,54 +2473,71 @@ const
   AGT_GAMEPAD_AXIS_LAST = AGT_GAMEPAD_AXIS_RIGHT_TRIGGER;
 {$ENDREGION}
 
-/// <summary>
-///   The default width of the application window, set to half of 1920 pixels (960 pixels).
-/// </summary>
 const
+
+  /// <summary>
+  ///   The default width of the application window, set to half of 1920 pixels (960 pixels).
+  /// </summary>
   AGT_DEFAULT_WINDOW_WIDTH = 1920 div 2;
 
-/// <summary>
-///   The default height of the application window, set to half of 1080 pixels (540 pixels).
-/// </summary>
-const
+  /// <summary>
+  ///   The default height of the application window, set to half of 1080 pixels (540 pixels).
+  /// </summary>
   AGT_DEFAULT_WINDOW_HEIGHT = 1080 div 2;
 
-/// <summary>
-///   The default frames per second (FPS) for the application.
-/// </summary>
-/// <remarks>
-///   This value represents the target frame rate, commonly used for smooth animations and rendering.
-/// </remarks>
-const
+  /// <summary>
+  ///   The default frames per second (FPS) for the application.
+  /// </summary>
+  /// <remarks>
+  ///   This value represents the target frame rate, commonly used for smooth animations and rendering.
+  /// </remarks>
   AGT_DEFAULT_FPS = 60;
 
-/// <summary>
-///   Represents a pointer to a window object, used for managing application windows.
-/// </summary>
-/// <remarks>
-///   This type is abstract and intended to encapsulate platform-specific window management details.
-/// </remarks>
 type
+
+  /// <summary>
+  ///   Represents a pointer to a window object, used for managing application windows.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is abstract and intended to encapsulate platform-specific window management details.
+  ///   - It is used as a generic pointer to interact with windows in a cross-platform way, abstracting the underlying platform-specific implementation.
+  ///   - This pointer is used in window management functions and allows applications to manipulate windows (e.g., create, resize, move, and handle events).
+  /// </remarks>
   AGT_Window = Pointer;
 
-/// <summary>
-///   Enumerates the possible states of an input device (e.g., keyboard, mouse).
-/// </summary>
-type
+  /// <summary>
+  ///   Enumerates the possible states of an input device (e.g., keyboard, mouse).
+  /// </summary>
+  /// <remarks>
+  ///   - This enumeration defines the possible states for input devices, helping to track whether an input is pressed, was pressed, or was released during the last frame.
+  ///   - It is commonly used in handling user input in interactive applications and games.
+  /// </remarks>
   AGT_InputState = (
     /// <summary>
     ///   The input is currently pressed.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This state indicates that the input (e.g., a key or mouse button) is currently being held down.
+    ///   - Useful for continuous actions (e.g., moving or shooting while a key is held).
+    /// </remarks>
     AGT_isPressed,
 
     /// <summary>
     ///   The input was pressed in the last frame.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This state indicates that the input was pressed during the last frame but is no longer held down.
+    ///   - Useful for detecting one-time actions (e.g., a key press to trigger an event).
+    /// </remarks>
     AGT_isWasPressed,
 
     /// <summary>
     ///   The input was released in the last frame.
-/// </summary>
+    /// </summary>
+    /// <remarks>
+    ///   - This state indicates that the input was released during the last frame.
+    ///   - Useful for handling events that occur when a key or button is released (e.g., stopping movement or firing a weapon).
+    /// </remarks>
     AGT_isWasReleased
   );
 
@@ -3296,38 +3573,50 @@ function AGT_Window_GetFrameRate(const AWindow: AGT_Window): UInt32; cdecl; exte
 function AGT_Window_GetDeltaTime(const AWindow: AGT_Window): Double; cdecl; external AGT_DLL;
 
 //=== TEXTURE ===============================================================
-/// <summary>
-///   Represents a handle to a texture resource used for rendering.
-/// </summary>
-/// <remarks>
-///   - The <c>AGT_Texture</c> type is an abstract pointer that encapsulates the details of a texture.
-///   - Textures are typically loaded from image files or generated dynamically and used in rendering operations.
-///   - Ensure proper management of texture resources to avoid memory leaks.
-/// </remarks>
 type
+
+  /// <summary>
+  ///   Represents a handle to a texture resource used for rendering.
+  /// </summary>
+  /// <remarks>
+  ///   - The <c>AGT_Texture</c> type is an abstract pointer that encapsulates the details of a texture.
+  ///   - Textures are typically loaded from image files or generated dynamically and used in rendering operations.
+  ///   - Ensure proper management of texture resources to avoid memory leaks.
+  /// </remarks>
   AGT_Texture = Pointer;
 
-/// <summary>
-///   Specifies the blending mode to use when rendering a texture.
-/// </summary>
-/// <remarks>
-///   - Blending modes determine how the texture is combined with the background or other elements during rendering.
-/// </remarks>
-type
+  /// <summary>
+  ///   Specifies the blending mode to use when rendering a texture.
+  /// </summary>
+  /// <remarks>
+  ///   - Blending modes determine how the texture is combined with the background or other elements during rendering.
+  ///   - The selected blending mode can affect the final appearance of the texture, such as transparency or blending with other graphical elements.
+  /// </remarks>
   AGT_TextureBlend = (
     /// <summary>
     ///   No blending; the texture is drawn as-is, fully opaque.
     /// </summary>
+    /// <remarks>
+    ///   - This mode renders the texture without any transparency or blending. The texture will appear fully opaque, covering whatever is behind it.
+    /// </remarks>
     AGT_tbNone,
 
     /// <summary>
     ///   Alpha blending; combines the texture with the background based on the texture's alpha channel.
     /// </summary>
+    /// <remarks>
+    ///   - In this mode, the texture's alpha channel (opacity) determines how the texture blends with the background.
+    ///   - Textures with alpha values less than 1.0 (fully opaque) will blend with the background, creating transparent or semi-transparent effects.
+    /// </remarks>
     AGT_tbAlpha,
 
     /// <summary>
     ///   Additive alpha blending; adds the texture's colors to the background, creating a glowing effect.
     /// </summary>
+    /// <remarks>
+    ///   - This mode adds the texture's color values to the background, effectively brightening the underlying colors.
+    ///   - It is often used for effects like glowing or light sources, where the texture appears to "light up" the background.
+    /// </remarks>
     AGT_tbAdditiveAlpha
   );
 
@@ -4255,15 +4544,16 @@ function AGT_Texture_CollideAABB(const ATexture1: AGT_Texture; const ATexture2: 
 function AGT_Texture_CollideOBB(const ATexture1: AGT_Texture; const ATexture2: AGT_Texture): Boolean; cdecl; external AGT_DLL;
 
 //=== FONT ==================================================================
-/// <summary>
-///   Represents a handle to a font resource used for rendering text.
-/// </summary>
-/// <remarks>
-///   - The <c>AGT_Font</c> type is an abstract pointer that encapsulates font-related data.
-///   - Fonts are used in conjunction with rendering functions to display text in a window.
-///   - Ensure proper management of font resources to avoid memory leaks.
-/// </remarks>
 type
+
+  /// <summary>
+  ///   Represents a handle to a font resource used for rendering text.
+  /// </summary>
+  /// <remarks>
+  ///   - The <c>AGT_Font</c> type is an abstract pointer that encapsulates font-related data.
+  ///   - Fonts are used in conjunction with rendering functions to display text in a window.
+  ///   - Ensure proper management of font resources to avoid memory leaks.
+  /// </remarks>
   AGT_Font = Pointer;
 
 /// <summary>
@@ -4598,35 +4888,51 @@ function AGT_Font_TextHeight(const AFont: AGT_Font): Single; cdecl; external AGT
 function AGT_Font_SaveTexture(const AFont: AGT_Font; const AFilename: PWideChar): Boolean; cdecl; external AGT_DLL;
 
 //=== VIDEO =================================================================
-/// <summary>
-///   Represents the playback status of a video.
-/// </summary>
-/// <remarks>
-///   - The video status is used to monitor and control video playback states.
-/// </remarks>
 type
+
+  /// <summary>
+  ///   Represents the playback status of a video.
+  /// </summary>
+  /// <remarks>
+  ///   - This type is used to monitor and control the current state of video playback.
+  ///   - It helps in determining whether a video is stopped or actively playing, allowing the application to react accordingly (e.g., pause, resume, stop, etc.).
+  /// </remarks>
   AGT_VideoStatus = (
-    AGT_vsStopped,  // Indicates that the video is stopped.
-    AGT_vsPlaying   // Indicates that the video is currently playing.
+    /// <summary>
+    ///   Indicates that the video playback is stopped.
+    /// </summary>
+    /// <remarks>
+    ///   - The video is not currently playing and has either been manually stopped or finished playing.
+    ///   - This state is useful to check before starting or resuming playback.
+    /// </remarks>
+    AGT_vsStopped,
+
+    /// <summary>
+    ///   Indicates that the video is currently playing.
+    /// </summary>
+    /// <remarks>
+    ///   - The video is actively being played.
+    ///   - This state is used to monitor if the video is currently in playback mode and can trigger actions like pausing or stopping.
+    /// </remarks>
+    AGT_vsPlaying
   );
 
-/// <summary>
-///   Defines a callback procedure for handling changes in video playback status.
-/// </summary>
-/// <param name="AStatus">
-///   The new status of the video playback, represented as an <c>AGT_VideoStatus</c>.
-/// </param>
-/// <param name="AFilename">
-///   The file path of the video whose status has changed.
-/// </param>
-/// <param name="AUserData">
-///   A pointer to user-defined data, typically provided when setting up the callback.
-/// </param>
-/// <remarks>
-///   - This callback is triggered when the video status changes (e.g., starts playing or stops).
-///   - Use this to implement custom behavior or notifications in response to video playback events.
-/// </remarks>
-type
+  /// <summary>
+  ///   Defines a callback procedure for handling changes in video playback status.
+  /// </summary>
+  /// <param name="AStatus">
+  ///   The new status of the video playback, represented as an <c>AGT_VideoStatus</c>.
+  /// </param>
+  /// <param name="AFilename">
+  ///   The file path of the video whose status has changed.
+  /// </param>
+  /// <param name="AUserData">
+  ///   A pointer to user-defined data, typically provided when setting up the callback.
+  /// </param>
+  /// <remarks>
+  ///   - This callback is triggered when the video status changes (e.g., starts playing or stops).
+  ///   - Use this to implement custom behavior or notifications in response to video playback events.
+  /// </remarks>
   AGT_VideoStatusCallback = procedure(const AStatus: AGT_VideoStatus; const AFilename: PWideChar; const AUserData: Pointer); cdecl;
 
 /// <summary>
@@ -4842,54 +5148,51 @@ procedure AGT_Video_SetLooping(const ALoop: Boolean); cdecl; external AGT_DLL;
 function AGT_Video_GetTexture(): AGT_Texture; cdecl; external AGT_DLL;
 
 //=== AUDIO =================================================================
-/// <summary>
-///   Indicates a general error related to audio operations.
-/// </summary>
-/// <remarks>
-///   - This constant is used to represent an error condition in audio-related functions.
-///   - Functions returning this value indicate a failure or invalid operation.
-/// </remarks>
 const
+
+  /// <summary>
+  ///   Indicates a general error related to audio operations.
+  /// </summary>
+  /// <remarks>
+  ///   - This constant is used to represent an error condition in audio-related functions.
+  ///   - Functions returning this value indicate a failure or invalid operation.
+  /// </remarks>
   AGT_AUDIO_ERROR = -1;
 
-/// <summary>
-///   Specifies the maximum number of music tracks that can be loaded simultaneously.
-/// </summary>
-/// <remarks>
-///   - This limit defines the maximum capacity for music resources in the audio system.
-///   - Attempting to load more than this number of tracks will result in errors.
-/// </remarks>
-const
+  /// <summary>
+  ///   Specifies the maximum number of music tracks that can be loaded simultaneously.
+  /// </summary>
+  /// <remarks>
+  ///   - This limit defines the maximum capacity for music resources in the audio system.
+  ///   - Attempting to load more than this number of tracks will result in errors.
+  /// </remarks>
   AGT_AUDIO_MUSIC_COUNT = 256;
 
-/// <summary>
-///   Specifies the maximum number of sound effects that can be loaded simultaneously.
-/// </summary>
-/// <remarks>
-///   - This limit defines the maximum capacity for sound effects in the audio system.
-///   - Attempting to load more than this number of effects will result in errors.
-/// </remarks>
-const
+  /// <summary>
+  ///   Specifies the maximum number of sound effects that can be loaded simultaneously.
+  /// </summary>
+  /// <remarks>
+  ///   - This limit defines the maximum capacity for sound effects in the audio system.
+  ///   - Attempting to load more than this number of effects will result in errors.
+  /// </remarks>
   AGT_AUDIO_SOUND_COUNT = 256;
 
-/// <summary>
-///   Specifies the total number of audio channels available for playback.
-/// </summary>
-/// <remarks>
-///   - This value defines the maximum number of audio channels that can be used concurrently.
-///   - Channels are used for playing sounds or music simultaneously.
-/// </remarks>
-const
+  /// <summary>
+  ///   Specifies the total number of audio channels available for playback.
+  /// </summary>
+  /// <remarks>
+  ///   - This value defines the maximum number of audio channels that can be used concurrently.
+  ///   - Channels are used for playing sounds or music simultaneously.
+  /// </remarks>
   AGT_AUDIO_CHANNEL_COUNT = 16;
 
-/// <summary>
-///   Indicates that a sound should be played on a dynamically assigned audio channel.
-/// </summary>
-/// <remarks>
-///   - When this value is used, the audio system automatically assigns an available channel for playback.
-///   - Useful for simplifying playback without managing channel allocation manually.
-/// </remarks>
-const
+  /// <summary>
+  ///   Indicates that a sound should be played on a dynamically assigned audio channel.
+  /// </summary>
+  /// <remarks>
+  ///   - When this value is used, the audio system automatically assigns an available channel for playback.
+  ///   - Useful for simplifying playback without managing channel allocation manually.
+  /// </remarks>
   AGT_AUDIO_CHANNEL_DYNAMIC = -2;
 
 /// <summary>
@@ -5418,8 +5721,8 @@ const
   AGT_CSIBold = AGT_ESC + '[1m';                  // Bold text
   AGT_CSIUnderline = AGT_ESC + '[4m';             // Underline text
   AGT_CSIResetFormat = AGT_ESC + '[0m';           // Reset text formatting
-  AGT_CSIResetBackground = #27'[49m';         // Reset background text formatting
-  AGT_CSIResetForeground = #27'[39m';         // Reset forground text formatting
+  AGT_CSIResetBackground = #27'[49m';             // Reset background text formatting
+  AGT_CSIResetForeground = #27'[39m';             // Reset forground text formatting
   AGT_CSIInvertColors = AGT_ESC + '[7m';          // Invert foreground/background
   AGT_CSINormalColors = AGT_ESC + '[27m';         // Normal colors
 
